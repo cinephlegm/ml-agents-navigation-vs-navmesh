@@ -62,7 +62,13 @@ unity/      final agent, NavMesh baseline, environment spawner and package metad
 paper/      final Research Design I report
 ```
 
-The original coursework repository also contained milestone archives, downloaded literature, presentation files, a prototype video and a third-party `LowPolyInterior` environment. Those are not redistributed here.
+The original coursework repository also contained milestone archives, downloaded literature, presentation files, a prototype video and the **Low Poly Cartoon House Interiors** Asset Store package by JustCreate. Those are not redistributed here.
+
+Original environment asset: [Low Poly Cartoon House Interiors](https://assetstore.unity.com/packages/3d/props/interior/low-poly-cartoon-house-interiors-167425).
+
+## Research report
+
+[Read the final Research Design I report (PDF)](paper/research-report.pdf).
 
 ## Environment
 
@@ -80,8 +86,35 @@ The original coursework repository also contained milestone archives, downloaded
 
 ## Citation
 
-If you use this repository, cite the project:
+If you use this repository, cite the project.
+
+### IEEE
 
 ```text
 J. C. Muscat, "ML-Agents Navigation vs NavMesh," Research Design I project, MCAST Institute of Information and Communication Technology, 2025.
 ```
+
+### Harvard
+
+```text
+Muscat, J.C. (2025) ML-Agents Navigation vs NavMesh. Research Design I project. MCAST Institute of Information and Communication Technology.
+```
+
+### APA
+
+```text
+Muscat, J. C. (2025). ML-Agents Navigation vs NavMesh [Research Design I project, MCAST Institute of Information and Communication Technology].
+```
+
+### BibTeX
+
+```bibtex
+@misc{muscat2025mlagentsnavigation,
+  author      = {Josef Carl Muscat},
+  title       = {ML-Agents Navigation vs NavMesh},
+  year        = {2025},
+  institution = {MCAST Institute of Information and Communication Technology}
+}
+```
+
+GitHub can also read the repository citation metadata from `CITATION.cff`.
