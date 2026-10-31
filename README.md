@@ -1,55 +1,87 @@
 # ML-Agents Navigation vs NavMesh
 
-A mini research thesis comparing a PPO-trained Unity ML-Agent with a conventional Unity NavMesh navigation baseline in an indoor navigation task.
+Research Design I project by **Josef Carl Muscat** comparing learned navigation in Unity ML-Agents with a conventional Unity NavMesh baseline.
 
-The project was originally completed for Research Design I and is being republished here as a clean research artifact rather than as a coursework submission dump.
+## Study
 
-## Research setup
+The experiment trains a raycast-based agent with Proximal Policy Optimization (PPO) to navigate a constrained indoor environment with hallways, doorways and static obstacles.
 
-The learned agent is implemented in Unity ML-Agents and receives eight scalar observations:
+The learned agent is compared against a conventional pathfinding baseline using Unity's `NavMeshAgent`.
 
-- goal direction on the X/Z plane;
-- normalised distance to the goal;
-- five obstacle-distance raycasts spanning -90°, -45°, 0°, 45° and 90°.
+The submitted report describes that baseline as A*. In the implementation, [`AStarAgent.cs`](unity/Assets/Scripts/AStarAgent.cs) delegates path planning to Unity's NavMesh system rather than implementing A* directly. This repository therefore refers to it as the **NavMesh baseline**.
 
-It outputs two continuous actions for forward/backward movement and turning.
+## Learned agent
 
-The conventional baseline uses Unity's `NavMeshAgent` to route toward the same tagged goal.
+[`HouseAgent.cs`](unity/Assets/Agents/HouseAgent.cs) uses:
 
-## Training configuration
+- **8 scalar observations**
+  - goal direction on X/Z
+  - normalised goal distance
+  - five obstacle ray distances at -90°, -45°, 0°, 45° and 90°
+- **2 continuous actions**
+  - forward/backward movement
+  - turning
+- shaped reward based on progress toward the goal
+- a small per-step penalty
+- collision penalties
+- a terminal reward for reaching the goal
 
-The archived experiment configuration uses:
+The older discrete `NavigationAgent` prototype is intentionally not included.
 
-- Unity 2022.3.49f1
-- Unity ML-Agents package 2.0.1
-- PPO
-- batch size: 2048
-- buffer size: 20480
-- learning rate: 5e-4
-- epsilon: 0.2
-- lambda: 0.95
-- hidden units: 256
-- hidden layers: 2
-- gamma: 0.99
-- maximum training steps: 5,000,000
+## Training
 
-## Why this repository is being rebuilt
+| Parameter | Value |
+| --- | ---: |
+| Algorithm | PPO |
+| Batch size | 2048 |
+| Buffer size | 20480 |
+| Learning rate | 5e-4 |
+| Entropy coefficient | 0.001 |
+| PPO clip epsilon | 0.2 |
+| Lambda | 0.95 |
+| Epochs | 3 |
+| Hidden units | 256 |
+| Hidden layers | 2 |
+| Gamma | 0.99 |
+| Time horizon | 1000 |
+| Maximum steps | 5,000,000 |
 
-The original university repository also contains milestone ZIPs, draft documents, presentation files, downloaded research papers and a third-party Unity Asset Store environment. Those do not belong in a public source repository.
+The exact configuration is in [`training/config.yaml`](training/config.yaml).
 
-This clean repository will contain only:
+## Evaluation
 
-- the experiment implementation;
-- training configuration;
-- a redistributable/minimal environment;
-- methodology and results documentation;
-- the final mini-thesis report where redistribution is appropriate;
-- demo media and reproducibility instructions.
+The submitted study evaluated the learned policy using **success rate, path length and learning progression**, with the NavMesh baseline used for comparison.
 
-## Important scope note
+The report concluded that reward-shaped PPO could learn effective navigation in the tested structured environment. This was a small controlled prototype, not a general claim that reinforcement learning outperforms classical pathfinding.
 
-This is a small controlled comparison, not evidence that reinforcement learning is generally better than deterministic pathfinding. The public repository will preserve the original experiment and its limitations rather than inflate the claim.
+## Repository
 
-## License
+```text
+training/   final PPO trainer configuration
+unity/      final agent, NavMesh baseline, environment spawner and package metadata
+paper/      final Research Design I report
+```
 
-A repository-wide license has not been applied yet because the source code, academic report and third-party assets have different licensing considerations. They will be handled explicitly before public release.
+The original coursework repository also contained milestone archives, downloaded literature, presentation files, a prototype video and a third-party `LowPolyInterior` environment. Those are not redistributed here.
+
+## Environment
+
+- Unity **2022.3.49f1**
+- Unity ML-Agents **2.0.1**
+- Unity AI Navigation **1.1.6**
+
+## Key references
+
+- A. Juliani et al., [*Unity: A General Platform for Intelligent Agents*](https://arxiv.org/abs/1809.02627), 2020.
+- H. Qiu, [*Multi-agent navigation based on deep reinforcement learning and traditional pathfinding algorithm*](https://arxiv.org/abs/2012.09134), 2020.
+- A. Nash, A. Vardy and D. Churchill, [*Herd's Eye View: Improving Game AI Agent Learning with Collaborative Perception*](https://doi.org/10.1609/aiide.v19i1.27526), AIIDE 2023.
+- [Unity ML-Agents Toolkit](https://github.com/Unity-Technologies/ml-agents).
+- [Unity `NavMeshAgent` API](https://docs.unity3d.com/ScriptReference/AI.NavMeshAgent.html).
+
+## Citation
+
+If you use this repository, cite the project:
+
+```text
+J. C. Muscat, "ML-Agents Navigation vs NavMesh," Research Design I project, MCAST Institute of Information and Communication Technology, 2025.
+```
