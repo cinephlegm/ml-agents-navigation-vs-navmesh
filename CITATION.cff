@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the project."
+title: "ML-Agents Navigation vs NavMesh"
+type: software
+authors:
+  - family-names: "Muscat"
+    given-names: "Josef Carl"
+repository-code: "https://github.com/cinephlegm/ml-agents-navigation-vs-navmesh"
+date-released: 2025-06-01
