@@ -1,6 +1,6 @@
 # ML-Agents Navigation vs NavMesh
 
-Research Design I project by **Josef Carl Muscat** comparing learned navigation in Unity ML-Agents with a conventional Unity NavMesh baseline.
+Research Design I project comparing learned navigation in Unity ML-Agents with a conventional Unity NavMesh baseline.
 
 ## Study
 
@@ -116,5 +116,3 @@ Muscat, J. C. (2025). ML-Agents Navigation vs NavMesh [Research Design I project
   institution = {MCAST Institute of Information and Communication Technology}
 }
 ```
-
-GitHub can also read the repository citation metadata from `CITATION.cff`.
